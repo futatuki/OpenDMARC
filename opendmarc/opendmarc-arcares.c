@@ -26,6 +26,7 @@
 # include <opendmarc_strl.h>
 #endif /* USE_DMARCSTRL_H */
 
+#include "opendmarc-ar.h"
 #include "opendmarc-arcares.h"
 #include "opendmarc.h"
 
@@ -187,13 +188,13 @@ opendmarc_arcares_arc_parse (struct arcares *aar,
 
 	for (cr = 0; cr < aar->payload.ares_count; cr++)
 	{
-		if (aar->payload.result[cr].result_method == ARES_METHOD_ARC)
+		if (aar->payload.ares_result[cr].result_method == ARES_METHOD_ARC)
 		{
 			if (r_found++)
 			{
 				return -1;
 			}
-			memcpy(&(arc->arcresult), &(aar->payload.result[cr]),
+			memcpy(&(arc->arcresult), &(aar->payload.ares_result[cr]),
 			       sizeof (arc->arcresult));
 			for (cp = 0; cp < arc->arcresult.result_props; cp++)
 			{
