@@ -3708,7 +3708,7 @@ mlfi_eom(SMFICTX *ctx)
 		                                 dfc->mctx_aarhead,
 		                                 &arcares) == 0)
 		{
-			if (opendmarc_arcares_arc_parse(arcares.arc,
+			if (opendmarc_arcares_arc_parse(&arcares,
 			                                &arcares_arc_field) != 0)
 			{
 				arcares_arc_field.smtpclientip[0] = '\0';
